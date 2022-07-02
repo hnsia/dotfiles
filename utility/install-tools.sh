@@ -16,14 +16,14 @@ echo '[*] Installing Zsh...'
 sudo apt install zsh -y
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+# NVM and Node
+echo '[*] Installing nvm and node...'
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+nvm install --lts
+
 # Stow sym links of configurations to home directory
 echo '[*] Removing default configurations...'
 rm ~/.gitconfig ~/.zshrc 
 
 echo '[*] Stowing/Creating simlinks for git, zsh, aliases...'
 stow -vSt ~ git zsh
-
-# NVM and Node
-echo '[*] Installing nvm and node...'
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-nvm install --lts
