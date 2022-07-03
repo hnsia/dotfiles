@@ -7,7 +7,7 @@ sudo apt install build-essential -y
 
 # Git
 echo '[*] Installing Git...'
-sudo apt-add-repository ppa:git-core/ppa
+sudo apt-add-repository ppa:git-core/ppa -y
 sudo apt update
 sudo apt install git -y
 
