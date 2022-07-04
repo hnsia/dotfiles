@@ -18,7 +18,8 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 # NVM and Node
 echo '[*] Installing nvm and node...'
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | zsh
+zsh
 nvm install --lts
 
 # Stow sym links of configurations to home directory
