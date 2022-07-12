@@ -34,4 +34,5 @@ echo '[*] Removing default configurations...'
 rm ~/.gitconfig ~/.zshrc 
 
 echo '[*] Stowing/Creating simlinks for git, zsh, aliases...'
+sudo apt install stow
 stow -vSt ~ git zsh
