@@ -1,14 +1,16 @@
 #!/bin/bash
 
+# APT update
+echo '[*] Updating APT...'
+sudo apt-add-repository ppa:git-core/ppa -y
+sudo apt update && sudo apt upgrade -y
+
 # Meta-packages
 echo '[*] Installing meta-packages...'
-sudo apt update
 sudo apt install build-essential -y
 
 # Git
 echo '[*] Installing Git...'
-sudo apt-add-repository ppa:git-core/ppa -y
-sudo apt update
 sudo apt install git -y
 
 # Zsh(shell) and Oh My Zsh(Zsh config managing framework)
@@ -31,7 +33,7 @@ nvm install --lts
 
 # Stow sym links of configurations to home directory
 echo '[*] Removing default configurations...'
-rm ~/.gitconfig ~/.zshrc 
+rm ~/.gitconfig ~/.zshrc ~/.p10k.zsh
 
 echo '[*] Stowing/Creating simlinks for git, zsh, aliases...'
 sudo apt install stow
