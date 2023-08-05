@@ -37,4 +37,4 @@ rm ~/.gitconfig ~/.zshrc ~/.p10k.zsh
 
 echo '[*] Stowing/Creating simlinks for git, zsh, aliases...'
 sudo apt install stow
-stow -vSt ~ git zsh
+stow -vSt ~ git zsh pl10k
