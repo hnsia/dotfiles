@@ -7,3 +7,4 @@ rm ~/.gitconfig ~/.zshrc ~/.p10k.zsh
 echo '[*] Stowing/Creating simlinks for git, zsh, aliases...'
 
 stow -vSt ~ git zsh pl10k
+zsh
