@@ -10,6 +10,7 @@ brew 'redis'
 brew 'fzf'
 brew 'stow'
 brew 'kubectl'
+brew 'tmux'
 
 # Apps
 cask 'docker'
