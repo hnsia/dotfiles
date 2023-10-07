@@ -41,6 +41,8 @@ My dotfiles configuration.
     . ./utility/wsl-linux/4_install-custom-tools.sh
     ```
 
+1. Manually set font on terminal. (pl10k config is currently set to MesloLGM Nerd Font)
+
 1. Run any manual installations
 
 ### Manual installations (WSL/Linux)
@@ -79,6 +81,8 @@ My dotfiles configuration.
     . ./utility/mac/2_customize-zsh.sh
     . ./utility/mac/3_stow-configs.sh
     ```
+
+1. Manually set font on terminal. (pl10k config is currently set to MesloLGM Nerd Font)
 
 1. Run any manual installations
     
