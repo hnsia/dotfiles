@@ -105,3 +105,4 @@ My dotfiles configuration.
 
 ## TODO
 1. Custom tools, e.g. redis, kubectl
+2. VScode profile/extensions/configurations export
