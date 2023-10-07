@@ -1,0 +1,21 @@
+# Taps
+tap 'homebrew/bundle'
+
+# CLI and Binaries
+brew 'coreutils'
+brew 'tree'
+brew 'grep'
+brew 'pyenv'
+brew 'redis'
+brew 'fzf'
+brew 'stow'
+brew 'kubectl'
+
+# Apps
+cask 'docker'
+cask 'iterm2'
+cask 'google-chrome'
+cask 'visual-studio-code'
+
+# Fonts
+cask 'font-source-code-pro'
