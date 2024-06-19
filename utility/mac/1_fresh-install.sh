@@ -4,13 +4,17 @@ echo "[*] Setting up your Mac..."
 
 # Check for Oh My Zsh and install if we don't have it
 echo "[*] Checking and installing Oh My Zsh..."
-if test ! $(which omz); then
+# Refer to Issue#1 on github repo for following commented line
+# if test ! $(which omz); then
+if ! which omz > /dev/null; then
   /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/HEAD/tools/install.sh)"
 fi
 
 # Check for Homebrew and install if we don't have it
 echo "[*] Checking and installing Homebrew..."
-if test ! $(which brew); then
+# Refer to Issue#1 on github repo for following commented line
+# if test ! $(which brew); then
+if ! which brew > /dev/null; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
   echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.zprofile
