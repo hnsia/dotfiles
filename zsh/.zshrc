@@ -117,3 +117,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # Neovim
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

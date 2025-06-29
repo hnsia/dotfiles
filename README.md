@@ -35,10 +35,10 @@ My dotfiles configuration.
 
 1. Run install scripts in utility/wsl-linux directory in order of number prefix on shell scripts.
     ```bash
-    . ./utility/wsl-linux/1_install-tools.sh
-    . ./utility/wsl-linux/2_customize-zsh.sh
-    . ./utility/wsl-linux/3_stow-configs.sh
-    . ./utility/wsl-linux/4_install-custom-tools.sh
+    sudo ./utility/wsl-linux/1_install-tools.sh
+    sudo ./utility/wsl-linux/2_customize-zsh.sh
+    sudo ./utility/wsl-linux/3_stow-configs.sh
+    sudo ./utility/wsl-linux/4_install-custom-tools.sh
     ```
 
 1. Manually set font on terminal. (pl10k config is currently set to MesloLGM Nerd Font)
@@ -72,6 +72,7 @@ My dotfiles configuration.
 1. Make all scripts executable and configure git to ignore changes to file permissions.
     ```bash
     git config core.filemode false
+    shopt -s globstar
     chmod +x **/*.sh
     ```
 
