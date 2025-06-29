@@ -32,5 +32,8 @@ brew bundle --file ./utility/mac/Brewfile
 
 # NVM
 echo '[*] Installing nvm and node...'
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 zsh
+
+# fzf
+source <(fzf --zsh)
