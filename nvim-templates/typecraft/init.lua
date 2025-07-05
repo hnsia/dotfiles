@@ -1,6 +1,3 @@
-vim.cmd("set et ts=3 sts=2 sw=2")
-vim.g.mapleader = " "
-
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -18,6 +15,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+require("vim-options")
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = { import = "plugins" },
@@ -26,18 +24,6 @@ require("lazy").setup({
   install = { colorscheme = { "habamax" } },
   -- automatically check for plugin updates
   checker = { enabled = true },
-})
-
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<C-p>', builtin.find_files, { desc = 'Telescope find files' })
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
-
-vim.keymap.set('n', '<C-n>', ':Neotree filesystem reveal left toggle<CR>', {})
-local config = require("nvim-treesitter.configs")
-config.setup({
-  ensure_installed = {"lua", "javascript", "go", "yaml"},
-  highlight = { enable = true },
-  indent = { enable = true },
 })
 
 -- vim.opt.clipboard = 'unnamedplus'
