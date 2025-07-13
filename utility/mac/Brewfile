@@ -12,6 +12,7 @@ brew 'stow'
 brew 'kubectl'
 brew 'tmux'
 brew 'neovim'
+brew 'ripgrep'
 
 # Apps
 cask 'docker'
