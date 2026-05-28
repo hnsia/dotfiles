@@ -33,12 +33,26 @@ My dotfiles configuration.
     chmod +x **/*.sh
     ```
 
-1. Run install scripts in utility/wsl-linux directory in order of number prefix on shell scripts.
+1. Run install scripts in utility/wsl-linux directory in order of number prefix on shell scripts. Each script can also be run independently later as needed.
     ```bash
-    . ./utility/wsl-linux/1_install-tools.sh
-    . ./utility/wsl-linux/2_customize-zsh.sh
-    . ./utility/wsl-linux/3_stow-configs.sh
-    . ./utility/wsl-linux/4_install-custom-tools.sh
+    ./utility/wsl-linux/1_install-tools.sh
+    ```
+
+    ```bash
+    ./utility/wsl-linux/2_customize-zsh.sh
+    ```
+
+    ```bash
+    ./utility/wsl-linux/3_stow-configs.sh
+    ```
+
+    ```bash
+    ./utility/wsl-linux/4_install-custom-tools.sh
+    ```
+
+1. Refresh the current shell after running scripts that update shell config or PATH.
+    ```bash
+    exec zsh -l
     ```
 
 1. Manually set font on terminal. (pl10k config is currently set to MesloLGM Nerd Font)
@@ -76,11 +90,22 @@ My dotfiles configuration.
     chmod +x **/*.sh
     ```
 
-1. Run install scripts in utility/mac directory in order of number prefix on shell scripts.
+1. Run install scripts in utility/mac directory in order of number prefix on shell scripts. Each script can also be run independently later as needed.
     ```bash
-    . ./utility/mac/1_fresh-install.sh
-    . ./utility/mac/2_customize-zsh.sh
-    . ./utility/mac/3_stow-configs.sh
+    ./utility/mac/1_fresh-install.sh
+    ```
+
+    ```bash
+    ./utility/mac/2_customize-zsh.sh
+    ```
+
+    ```bash
+    ./utility/mac/3_stow-configs.sh
+    ```
+
+1. Refresh the current shell after running scripts that update shell config or PATH.
+    ```bash
+    exec zsh -l
     ```
 
 1. Manually set font on terminal. (pl10k config is currently set to MesloLGM Nerd Font)
@@ -107,3 +132,6 @@ My dotfiles configuration.
 ## TODO
 1. Custom tools, e.g. redis, kubectl
 2. VScode profile/extensions/configurations export
+3. brew git
+4. brew pinning
+5. better separation between wsl and mac

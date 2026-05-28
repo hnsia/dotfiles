@@ -3,8 +3,10 @@
 # NVM
 echo '[*] Installing nvm and node...'
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
-# Source zshrc to load nvm and other configurations
-source ~/.zshrc
+
+# Load nvm for this script without relying on a shell restart.
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 # Install Node
 nvm install --lts
@@ -25,5 +27,4 @@ curl -LO https://github.com/BurntSushi/ripgrep/releases/download/14.1.1/ripgrep_
 sudo dpkg -i ripgrep_14.1.1-1_amd64.deb
 rm ripgrep_14.1.1-1_amd64.deb
 
-echo '[*] Restarting zsh...'
-exec zsh -l
+echo '[*] Done. Refresh your shell with: exec zsh -l'

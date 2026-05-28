@@ -116,7 +116,15 @@ export NVM_DIR="$HOME/.nvm"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Neovim
-export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+# export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 
 # fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if [ -f ~/.fzf.zsh ]; then
+  source ~/.fzf.zsh
+elif command -v fzf >/dev/null 2>&1; then
+  eval "$(fzf --zsh 2>/dev/null)"
+fi
+
+# kubectl
+alias k=kubectl
+source <(kubectl completion zsh)

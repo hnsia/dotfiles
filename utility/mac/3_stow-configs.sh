@@ -39,8 +39,7 @@ main() {
 
   run_or_fail 'Failed to stow dotfiles' stow -vSt "$HOME" git zsh pl10k || return 1
 
-  echo '[*] Restarting zsh...'
-  exec zsh -l
+  echo '[*] Done. Refresh your shell with: exec zsh -l'
 }
 
-main "$@" || return 1 2>/dev/null || exit 1
+main "$@" || exit 1
