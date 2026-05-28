@@ -25,4 +25,5 @@ curl -LO https://github.com/BurntSushi/ripgrep/releases/download/14.1.1/ripgrep_
 sudo dpkg -i ripgrep_14.1.1-1_amd64.deb
 rm ripgrep_14.1.1-1_amd64.deb
 
-zsh
+echo '[*] Restarting zsh...'
+exec zsh -l

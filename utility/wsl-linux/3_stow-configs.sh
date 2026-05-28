@@ -1,10 +1,46 @@
 #!/bin/bash
 
-# Stow sym links of configurations to home directory
-echo '[*] Removing default configurations...'
-rm ~/.gitconfig ~/.zshrc ~/.p10k.zsh
+backup_dir="$HOME/.dotfiles-backup/$(date +%Y%m%d-%H%M%S)"
 
-echo '[*] Stowing/Creating simlinks for git, zsh, aliases...'
+fail() {
+  echo "[!] $1" >&2
+  return 1
+}
 
-stow -vSt ~ git zsh pl10k
-zsh
+run_or_fail() {
+  local message="$1"
+  shift
+
+  "$@" || fail "$message"
+}
+
+backup_existing_config() {
+  local target="$1"
+  local name
+
+  if [ ! -e "$target" ] && [ ! -L "$target" ]; then
+    return
+  fi
+
+  name="$(basename "$target")"
+  mkdir -p "$backup_dir"
+  echo "[*] Backing up existing $target to $backup_dir/$name"
+  mv "$target" "$backup_dir/$name"
+}
+
+main() {
+  # Stow symlinks of configurations to home directory
+  echo '[*] Backing up existing configurations...'
+  run_or_fail "Failed to back up $HOME/.gitconfig" backup_existing_config "$HOME/.gitconfig" || return 1
+  run_or_fail "Failed to back up $HOME/.zshrc" backup_existing_config "$HOME/.zshrc" || return 1
+  run_or_fail "Failed to back up $HOME/.p10k.zsh" backup_existing_config "$HOME/.p10k.zsh" || return 1
+
+  echo '[*] Stowing/Creating symlinks for git, zsh, aliases...'
+
+  run_or_fail 'Failed to stow dotfiles' stow -vSt "$HOME" git zsh pl10k || return 1
+
+  echo '[*] Restarting zsh...'
+  exec zsh -l
+}
+
+main "$@" || return 1 2>/dev/null || exit 1
