@@ -1,5 +1,21 @@
 #!/bin/zsh
 
+clone_or_update() {
+  local repo="$1"
+  local target="$2"
+
+  if [ -d "$target/.git" ]; then
+    echo "[*] Updating $target..."
+    git -C "$target" pull --ff-only
+  elif [ -e "$target" ]; then
+    echo "[!] $target already exists but is not a git checkout. Cannot update safely." >&2
+    return 1
+  else
+    echo "[*] Cloning $repo into $target..."
+    git clone --depth 1 "$repo" "$target"
+  fi
+}
+
 # NVM
 echo '[*] Installing nvm and node...'
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
@@ -12,8 +28,8 @@ export NVM_DIR="$HOME/.nvm"
 nvm install --lts
 
 # Install fzf
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
+clone_or_update https://github.com/junegunn/fzf.git "$HOME/.fzf" || exit 1
+"$HOME/.fzf/install" --key-bindings --completion --no-update-rc
 
 # Install tmux
 sudo apt install tmux

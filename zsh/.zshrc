@@ -126,5 +126,7 @@ elif command -v fzf >/dev/null 2>&1; then
 fi
 
 # kubectl
-alias k=kubectl
-source <(kubectl completion zsh)
+if command -v kubectl >/dev/null 2>&1; then
+  alias k=kubectl
+  source <(kubectl completion zsh)
+fi
