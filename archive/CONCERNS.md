@@ -19,7 +19,7 @@ Read-only review performed for a personal dotfiles repository used to set up new
 
    This could permanently delete device-specific config on a new or existing machine. The stow scripts now back up existing managed files into `~/.dotfiles-backup/YYYYMMDD-HHMMSS/` before running `stow`.
 
-2. **Remote install scripts are executed directly from moving sources**
+2. **Remote install scripts are executed directly from moving sources** - accepted
 
    Several scripts pipe remote content directly into `sh` or `bash`, or download from moving targets such as `HEAD`, `master`, or `latest`.
 
@@ -30,7 +30,9 @@ Read-only review performed for a personal dotfiles repository used to set up new
    - NVM installer in both platform setup flows
    - Neovim `latest` release download in `utility/wsl-linux/4_install-custom-tools.sh`
 
-   This is common in personal bootstrap scripts, but it reduces reproducibility and increases supply-chain risk. Prefer pinned versions, checksum verification where practical, and comments documenting intentional trust boundaries.
+   This is common in personal bootstrap scripts, and several of these commands match the official install instructions for the tools. The tradeoff is intentional for this repository: fresh machines should generally receive current bootstrap tooling instead of reproducing an older install exactly.
+
+   The remaining risk is accepted rather than fixed: the same dotfiles commit can install different upstream versions on different days, and remote installer behavior can change without a repo change here. Where exact repeatability matters, prefer pinned versions or package-manager installs. Where latest setup is preferred, keep the official moving installer and document that trust boundary inline.
 
 3. **WSL ripgrep download likely fails** - addressed
 
@@ -78,9 +80,9 @@ Read-only review performed for a personal dotfiles repository used to set up new
 
    The zsh plugin/theme scripts and WSL fzf install now check for existing git checkouts and update them with `git pull --ff-only` instead of failing on existing clone targets.
 
-7. **Shared `.zshrc` contains WSL/Linux-specific assumptions** - partially addressed
+7. **Shared `.zshrc` contains WSL/Linux-specific assumptions** - addressed
 
-   `zsh/.zshrc` includes:
+   Previously, `zsh/.zshrc` included:
 
    ```sh
    plugins=(git nvm node ubuntu npm zsh-autosuggestions zsh-syntax-highlighting)
@@ -88,11 +90,11 @@ Read-only review performed for a personal dotfiles repository used to set up new
    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
    ```
 
-   The `/opt/nvim-linux-x86_64/bin` path is now commented out, fzf setup supports both cloned and Homebrew installs, and kubectl alias/completion setup is guarded behind `command -v kubectl`. The `ubuntu` plugin is still in the shared plugin list and may need a platform guard or split config later.
+   The zsh config is now split into shared common config and committed platform overlays. WSL-only `ubuntu` plugin setup and the Linux Neovim path live in `platform/wsl/zsh/.zshrc.platform`, while `platform/mac/zsh/.zshrc.platform` is reserved for macOS-specific interactive zsh config. Device-specific config is reserved for untracked `~/.zshrc.local`.
 
 ## Lower Priority
 
-8. **Neovim Typecraft template hardcodes WSL clipboard commands**
+8. **Neovim Typecraft template hardcodes WSL clipboard commands** - addressed
 
    `nvim-templates/typecraft/init.lua` configures clipboard integration through `clip.exe` and `powershell.exe`:
 
@@ -111,13 +113,13 @@ Read-only review performed for a personal dotfiles repository used to set up new
    }
    ```
 
-   This is useful under WSL, but it will fail on native Linux or macOS unless guarded.
+   This is useful under WSL, but it will fail on native Linux or macOS unless guarded. The template now only applies the WSL clipboard provider when Neovim detects WSL and `clip.exe` is available.
 
-9. **Windows Terminal settings are machine-specific**
+9. **Windows Terminal settings are machine-specific** - addressed
 
    `settings.json` includes fixed profile GUIDs, Visual Studio 2019 profile sources, Canonical Store Ubuntu source IDs, and a default profile set to Windows PowerShell.
 
-   This may not transfer cleanly to a new Windows device. Consider documenting that this file is a reference config rather than a blindly stowed file, or split reusable settings from machine-specific profile entries.
+   This may not transfer cleanly to a new Windows device if applied automatically. The file has been moved to `utility/wsl-linux/settings.json`, which keeps it out of the stowed dotfile layout and makes it a WSL/Windows Terminal reference config to copy or adapt manually.
 
 ## Other Notes
 

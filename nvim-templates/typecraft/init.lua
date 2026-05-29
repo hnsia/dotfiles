@@ -27,15 +27,17 @@ require("lazy").setup({
 })
 
 -- vim.opt.clipboard = 'unnamedplus'
-vim.g.clipboard = {
-  name = 'wsl-clipboard',
-  copy = {
-    ['+'] = 'clip.exe',
-    ['*'] = 'clip.exe',
-  },
-  paste = {
-    ['+'] = 'powershell.exe -Command "Get-Clipboard"',
-    ['*'] = 'powershell.exe -Command "Get-Clipboard"',
-  },
-  cache_enabled = false,
-}
+if vim.fn.has("wsl") == 1 and vim.fn.executable("clip.exe") == 1 then
+  vim.g.clipboard = {
+    name = "wsl-clipboard",
+    copy = {
+      ["+"] = "clip.exe",
+      ["*"] = "clip.exe",
+    },
+    paste = {
+      ["+"] = 'powershell.exe -Command "Get-Clipboard"',
+      ["*"] = 'powershell.exe -Command "Get-Clipboard"',
+    },
+    cache_enabled = false,
+  }
+end

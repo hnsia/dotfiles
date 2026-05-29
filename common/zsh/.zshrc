@@ -77,7 +77,11 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git nvm node ubuntu npm zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git nvm node npm zsh-autosuggestions zsh-syntax-highlighting)
+
+# Platform-specific config is committed and stowed per OS.
+# It is sourced before Oh My Zsh so platforms can adjust plugins.
+[ -f "$HOME/.zshrc.platform" ] && source "$HOME/.zshrc.platform"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -115,9 +119,6 @@ export NVM_DIR="$HOME/.nvm"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Neovim
-# export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
-
 # fzf
 if [ -f ~/.fzf.zsh ]; then
   source ~/.fzf.zsh
@@ -130,3 +131,6 @@ if command -v kubectl >/dev/null 2>&1; then
   alias k=kubectl
   source <(kubectl completion zsh)
 fi
+
+# Device-specific config is intentionally untracked and loaded last.
+[ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"

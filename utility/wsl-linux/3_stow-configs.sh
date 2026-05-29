@@ -33,11 +33,13 @@ main() {
   echo '[*] Backing up existing configurations...'
   run_or_fail "Failed to back up $HOME/.gitconfig" backup_existing_config "$HOME/.gitconfig" || return 1
   run_or_fail "Failed to back up $HOME/.zshrc" backup_existing_config "$HOME/.zshrc" || return 1
+  run_or_fail "Failed to back up $HOME/.zshrc.platform" backup_existing_config "$HOME/.zshrc.platform" || return 1
   run_or_fail "Failed to back up $HOME/.p10k.zsh" backup_existing_config "$HOME/.p10k.zsh" || return 1
 
-  echo '[*] Stowing/Creating symlinks for git, zsh, aliases...'
+  echo '[*] Stowing/Creating symlinks for common and WSL configurations...'
 
-  run_or_fail 'Failed to stow dotfiles' stow -vSt "$HOME" git zsh pl10k || return 1
+  run_or_fail 'Failed to stow common dotfiles' stow -vSt "$HOME" -d common git zsh pl10k || return 1
+  run_or_fail 'Failed to stow WSL dotfiles' stow -vSt "$HOME" -d platform/wsl zsh || return 1
 
   echo '[*] Done. Refresh your shell with: exec zsh -l'
 }

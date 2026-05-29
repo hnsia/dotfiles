@@ -1,6 +1,15 @@
 # dotfiles
 My dotfiles configuration.
 
+## Layout
+
+- `common/` contains shared dotfiles that are stowed on both macOS and WSL.
+- `platform/mac/` contains committed macOS-specific overlays for stowed dotfiles.
+- `platform/wsl/` contains committed WSL-specific overlays for stowed dotfiles.
+- `utility/` contains platform-specific setup scripts and is not stowed.
+- `nvim-templates/` contains reference Neovim configs and is not stowed by default.
+- `~/.zshrc.local` is reserved for untracked device-specific zsh config.
+
 ## Setup instructions (WSL/Linux)
 1. Install Linux distro of choice. (and open it in Windows Terminal, if using WSL) 
 
@@ -25,7 +34,7 @@ My dotfiles configuration.
     cd ~/.dotfiles
     ```
 
-1. Update `./dotfiles/git/.gitconfig` with options specific for your use case.
+1. Update `./dotfiles/common/git/.gitconfig` with options specific for your use case.
 
 1. Make all scripts executable and configure git to ignore changes to file permissions.
     ```bash
@@ -81,7 +90,7 @@ My dotfiles configuration.
     cd ~/.dotfiles
     ```
 
-1. Update `./dotfiles/git/.gitconfig` with options specific for your use case.
+1. Update `./dotfiles/common/git/.gitconfig` with options specific for your use case.
 
 1. Make all scripts executable and configure git to ignore changes to file permissions.
     ```bash
@@ -134,4 +143,3 @@ My dotfiles configuration.
 2. VScode profile/extensions/configurations export
 3. brew git
 4. brew pinning
-5. better separation between wsl and mac

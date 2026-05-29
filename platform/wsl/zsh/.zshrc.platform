@@ -1,0 +1,6 @@
+# WSL-specific zsh configuration
+
+plugins+=(ubuntu)
+
+# Neovim installed from the official Linux tarball.
+# export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
