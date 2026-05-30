@@ -1,5 +1,4 @@
 # Taps
-tap 'homebrew/bundle'
 
 # CLI and Binaries
 brew 'git'
