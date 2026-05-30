@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 clone_or_update() {
   local repo="$1"
@@ -32,7 +32,7 @@ clone_or_update https://github.com/junegunn/fzf.git "$HOME/.fzf" || exit 1
 "$HOME/.fzf/install" --key-bindings --completion --no-update-rc
 
 # Install tmux
-sudo apt install tmux
+sudo apt install tmux -y
 
 # Install Neovim
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz

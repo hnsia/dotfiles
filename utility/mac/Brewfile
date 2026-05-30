@@ -2,6 +2,7 @@
 tap 'homebrew/bundle'
 
 # CLI and Binaries
+brew 'git'
 brew 'coreutils'
 brew 'tree'
 brew 'grep'
@@ -15,10 +16,11 @@ brew 'neovim'
 brew 'ripgrep'
 
 # Apps
-cask 'docker'
+cask 'orbstack'
 cask 'iterm2'
 cask 'google-chrome'
 cask 'visual-studio-code'
+cask 'raycast'
 
 # Fonts
 cask 'font-meslo-lg-nerd-font'

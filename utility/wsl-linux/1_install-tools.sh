@@ -19,7 +19,12 @@ sudo apt install stow -y
 # Zsh(shell) and Oh My Zsh(Zsh config managing framework)
 echo '[*] Installing Zsh...'
 sudo apt install zsh -y
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# Oh My Zsh — installed last so it can't short-circuit the rest of the script.
+echo '[*] Checking and installing Oh My Zsh...'
+if ! which omz > /dev/null; then
+  RUNZSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
 
 
 

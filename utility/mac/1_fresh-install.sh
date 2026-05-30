@@ -2,14 +2,6 @@
 
 echo "[*] Setting up your Mac..."
 
-# Check for Oh My Zsh and install if we don't have it
-echo "[*] Checking and installing Oh My Zsh..."
-# Refer to Issue#1 on github repo for following commented line
-# if test ! $(which omz); then
-if ! which omz > /dev/null; then
-  /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/HEAD/tools/install.sh)"
-fi
-
 # Check for Homebrew and install if we don't have it
 echo "[*] Checking and installing Homebrew..."
 # Refer to Issue#1 on github repo for following commented line
@@ -48,5 +40,17 @@ brew bundle --file ./utility/mac/Brewfile
 # NVM
 echo '[*] Installing nvm and node...'
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
+# Load nvm for this script without relying on a shell restart.
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+nvm install --lts
+
+# Oh My Zsh — installed last so it can't short-circuit the rest of the script.
+echo "[*] Checking and installing Oh My Zsh..."
+# Refer to Issue#1 on github repo for following commented line
+# if test ! $(which omz); then
+if ! which omz > /dev/null; then
+  RUNZSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/HEAD/tools/install.sh)"
+fi
 
 echo '[*] Done. Refresh your shell with: exec zsh -l'

@@ -112,6 +112,11 @@ My dotfiles configuration.
     ./utility/mac/3_stow-configs.sh
     ```
 
+    Optional: pin fragile Homebrew formulae to keep `brew upgrade` from updating them automatically.
+    ```bash
+    ./utility/mac/4_pin-fragile-tools.sh
+    ```
+
 1. Refresh the current shell after running scripts that update shell config or PATH.
     ```bash
     exec zsh -l
@@ -135,11 +140,9 @@ My dotfiles configuration.
 
 1. Python
     ```bash
-    pyenv install 2
+    pyenv install 3.14
     ```
 
 ## TODO
 1. Custom tools, e.g. redis, kubectl
 2. VScode profile/extensions/configurations export
-3. brew git
-4. brew pinning
