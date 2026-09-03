@@ -31,8 +31,10 @@ nvm install --lts
 clone_or_update https://github.com/junegunn/fzf.git "$HOME/.fzf" || exit 1
 "$HOME/.fzf/install" --key-bindings --completion --no-update-rc
 
-# Install tmux
+# Install tmux and TPM (tmux plugin manager) for the plugins in ~/.tmux.conf.
+# Install the plugins afterwards from inside tmux with prefix + I.
 sudo apt install tmux -y
+clone_or_update https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm" || exit 1
 
 # Install Neovim
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz

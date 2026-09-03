@@ -37,6 +37,13 @@ echo "[*] Installing dependencies and apps with brew..."
 brew tap homebrew/bundle
 brew bundle --file ./utility/mac/Brewfile
 
+# TPM (tmux plugin manager) for the plugins declared in ~/.tmux.conf.
+# Install the plugins afterwards from inside tmux with prefix + I.
+if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+  echo '[*] Installing TPM (tmux plugin manager)...'
+  git clone --depth 1 https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
+fi
+
 # NVM
 echo '[*] Installing nvm and node...'
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash

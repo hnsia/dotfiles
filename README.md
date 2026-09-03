@@ -71,6 +71,7 @@ My dotfiles configuration.
 ### Manual installations (WSL/Linux)
 1. Visual Studio Code (from official website)
 2. VS Code Extensions
+3. tmux plugins: start `tmux` and press `prefix + I` (`Ctrl-b`, then `Shift-i`) to install them. See [`docs/tmux.md`](docs/tmux.md).
 
 ### WSL
 1. Fonts from nerdfonts.com
@@ -142,6 +143,13 @@ My dotfiles configuration.
     ```bash
     pyenv install 3.14
     ```
+
+1. tmux plugins: start `tmux` and press `prefix + I` (`Ctrl-b`, then `Shift-i`) to install them. See [`docs/tmux.md`](docs/tmux.md).
+
+## Terminal session persistence (tmux)
+
+`tmux` is configured to restore terminal sessions after an unexpected OS restart.
+See [`docs/tmux.md`](docs/tmux.md) for details, usage, and recovery steps.
 
 ## TODO
 1. Custom tools, e.g. redis, kubectl
